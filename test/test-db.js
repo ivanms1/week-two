@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('users', 'ivan', '123456', {
+//connect the test database
+const sequelize = new Sequelize('users_test', 'ivan', '123456', {
     dialect: 'postgres',
     operatorsAliases: false,
     logging: false,
