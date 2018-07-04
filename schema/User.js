@@ -34,4 +34,7 @@ const User = sequelize.define('user', {
     user.password = user.password && user.password != "" ? bcrypt.hashSync(user.password, salt) : "";
  });
 
+ sequelize.sync()
+.then(() => console.log('Connected to the database'));
+
  module.exports = User;
