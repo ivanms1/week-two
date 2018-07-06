@@ -4,6 +4,8 @@ node_js:
   - "node"
 services:
   - postgresql
+before_install:
+  - "npm install sequelize-cli -g"
 install:
   - "npm install"
 before_script:

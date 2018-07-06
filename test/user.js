@@ -1,20 +1,23 @@
-const User = require('../schema/User');
+const factory = require('./factory')
 
+require('./helpers');
 let chai = require('chai');
 let chaiHttp = require('chai-http');
 let server = require('../server');
+const models = require('../schema');
+
 let should = chai.should();
 
 chai.use(chaiHttp);
 
 let user = {
-    email: 'test@test.com',
+    email: 'test@example.com',
     password: '123456'
 }
 
 let oldUser = {
-    email: 'test2@test.com',
-    password: '123456'
+     email: 'test@test.com',
+     password: '123456'
 }
 
 let wrongEmail = {
@@ -23,8 +26,8 @@ let wrongEmail = {
 }
 
 let wrongPassword = {
-    email: 'test2@test.com',
-    password: '1234567'
+    email: 'test@test.com',
+    password: '123457'
 }
 
 let badEmail = {
@@ -34,24 +37,16 @@ let badEmail = {
 
 let badPassword = {
     email: 'test@test.com',
-    password: '12345'
+    password: '1234567'
 }
 
+let createdUser = null;
+
 describe('User', () => {
-    beforeEach((done) => {
-        User.destroy({
-            where: {},
-            truncate: true
-        })
-        .then(() => {
-            User.create(oldUser)
-            .then(() => done());
-        });
-    });
 
     describe('/signup user', () => {
         it('should sign up the user', (done) => {
-            chai.request(server)
+             chai.request(server)
             .post('/user/signup')
             .send(user)
             .end((err, res) => {
@@ -62,6 +57,7 @@ describe('User', () => {
         });
 
         it('should not sign up if email already exists', (done) => {
+            
             chai.request(server)
             .post('/user/signup')
             .send(oldUser)
