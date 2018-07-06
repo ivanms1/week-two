@@ -12,21 +12,22 @@ const pg = require('pg');
 let cleanUpDb;
 
 before( done => {
-      db.user.create({
-          email: 'test@test.com',
-          password: '123456'
-      });
-      done()
- });
-
- after( done => {
     db.user.destroy({
         where: {},
         truncate: true
+     })
+     .then(() => {
+        db.user.create({
+            email: 'test@test.com',
+            password: '123456'
+        })
+        done()
      });
+ });
 
-    done();
- })
+//  after( done => {
+    
+//  })
 
 // afterEach(function (done) {
 //     db.sequelize.User.destroy({
