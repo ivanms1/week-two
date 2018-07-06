@@ -11,7 +11,7 @@ let should = chai.should();
 chai.use(chaiHttp);
 
 let user = {
-    email: 'test@example.com',
+    email: 'test2@example.com',
     password: '123456'
 }
 
