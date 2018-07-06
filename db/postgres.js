@@ -1,8 +1,10 @@
 const Sequelize = require('sequelize');
 
+
 const sequelize = new Sequelize('users', 'ivan', '123456', {
     dialect: 'postgres',
     operatorsAliases: false,
+    logging: false,
     pool: {
         max: 5,
         min: 0,
