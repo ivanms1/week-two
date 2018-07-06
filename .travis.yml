@@ -4,12 +4,7 @@ node_js:
   - "node"
 services:
   - postgresql
-before_install:
-  - "npm install sequelize-cli -g"
 install:
   - "npm install"
-before_script:
-  - psql -c 'create database users_test;' -U postgres
-  - psql -c "CREATE USER ivan WITH PASSWORD '123456';" -U postgres
 script:
   - "npm test"
