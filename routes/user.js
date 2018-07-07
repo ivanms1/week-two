@@ -16,6 +16,7 @@ router.post('/signup', (req, res) => {
         email: req.body.email,
         password: req.body.password
     }
+
     User.find({
         where: {
             email: newUser.email
